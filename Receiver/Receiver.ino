@@ -2,8 +2,8 @@
 #include <SoftwareSerial.h>
 
 // for bluetooth
-const int rx = A1; // connected to TXD
-const int tx = A2; // connected to RXD
+const int rx = A2; // connected to TXD
+const int tx = A1; // connected to RXD
 SoftwareSerial bt(rx, tx);
 
 void forward();
@@ -47,10 +47,11 @@ public:
 };
 
 // (in1, in2, en)
-Motor left1(7, 5, 6);
+Motor left1(5, 7, 6);
 Motor left2(4, 2, 3);
-Motor right1(10, 8, 9);
-Motor right2(13, 11, 12);
+
+Motor right1(8, 10, 9);
+Motor right2(11, 13, 12);
 
 void setup() {
   left1.setup();

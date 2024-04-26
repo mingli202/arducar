@@ -29,29 +29,23 @@ void setup() {
 
   bt.print("AT+IMME0");
   delay(400);
-  bt.print("AT+ROLE0");
+  bt.print("AT+ROLE1");
   delay(400);
   bt.print("AT+CON6C79B8B73EF9");
   delay(400);
 }
 
-int last = -1;
-
 void loop() {
-  if (digitalRead(forwardPin) == HIGH && last != forwardPin) {
+
+  if (digitalRead(forwardPin) == HIGH) {
     bt.write('1');
-    last = forwardPin;
-  } else if (digitalRead(backwardPin) == HIGH && last != backwardPin) {
+  } else if (digitalRead(backwardPin) == HIGH) {
     bt.write('0');
-    last = backwardPin;
-  } else if (digitalRead(leftPin) == HIGH && last != leftPin) {
+  } else if (digitalRead(leftPin) == HIGH) {
     bt.write('3');
-    last = leftPin;
-  } else if (digitalRead(rightPin) == HIGH && last != rightPin) {
+  } else if (digitalRead(rightPin) == HIGH) {
     bt.write('2');
-    last = rightPin;
-  } else if (last != 0) {
+  } else {
     bt.write('4');
-    last = 0;
   }
 }
