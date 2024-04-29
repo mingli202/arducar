@@ -65,7 +65,7 @@ void setup() {
 void loop() {
 
   // Read from the Bluetooth module and send to the Arduino Serial Monitor
-  if (bt.available() || false) {
+  if (bt.available()) {
     int state = bt.read();
     // 48 is the ascii code for "0" forward
     // 49 is the ascii code for "1" backward

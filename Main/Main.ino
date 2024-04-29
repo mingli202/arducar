@@ -35,17 +35,24 @@ void setup() {
   delay(400);
 }
 
-void loop() {
+char command = '4';
+char last = '4';
 
+void loop() {
   if (digitalRead(forwardPin) == HIGH) {
-    bt.write('1');
+    command = '1';
   } else if (digitalRead(backwardPin) == HIGH) {
-    bt.write('0');
+    command = '0';
   } else if (digitalRead(leftPin) == HIGH) {
-    bt.write('3');
+    command = '3';
   } else if (digitalRead(rightPin) == HIGH) {
-    bt.write('2');
+    command = '2';
   } else {
-    bt.write('4');
+    command = '4';
+  }
+
+  if (command != last) {
+    bt.write(command);
+    last = command;
   }
 }
