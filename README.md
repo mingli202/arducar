@@ -8,8 +8,8 @@ The project is a remote controlled mini car.
     - HM10 Bluetooth module (slave)
 - Controller (main)
     - Arduino Uno board
-    - 4 tilt sensor
-    - HM Bluetooth module (master)
+    - 4 tilt sensors
+    - HM10 Bluetooth module (master)
 
 The controller is a handle with a square platform, where on each edge there is a tilt sensor pointing outwards and slightly down. This ensures that when the controller is at rest, the sensors pick up no tilt, and when there is a tilt, the one on the opposite end will be active. This way, the controller can register all 4 tilting motion (forward, backward, left, right). Each time the controller changes its state, it will send a message via the Bluetooth serial port.
 
