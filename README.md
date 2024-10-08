@@ -16,3 +16,5 @@ The controller is a handle with a square platform, where on each edge there is a
 The car has two H-bridge so that it can turn in place and go forward/backward. For example, when turning left, the left wheels will turn backward, and the right wheels will turn forward. It receives a message from the controller via its Bluetooth serial port, and moves accordingly.
 
 There are better ways for communication between two Arduino board, but we used two HM10 Bluetooth module to communicate with each other because that was the available hardware our teacher had and we didn't want to spend money buying parts.
+
+This might not seem a lot, but there is very little documentaion about connecting two HM10 bluetooth module together since nobody does that and there are better ways to connect two Arduinos. So, there was a lot of painful testing until we got the this final polished and consistent solution.
