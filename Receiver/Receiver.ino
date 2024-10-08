@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
-// for bluetooth
+// Setup pins for bluetooth
 const int rx = A2; // connected to TXD
 const int tx = A1; // connected to RXD
 SoftwareSerial bt(rx, tx);
@@ -12,6 +12,11 @@ void left();
 void right();
 void stop();
 
+// This is a class that manages an individual motor.
+// Since the motors are controlled by h-bridges,
+// the constructor takes in 3 parameters: input1, input2, engine
+// We create this class to reduce dupplicated code
+// since all the motors are controlled the same way.
 class Motor {
 private:
   int input1;
@@ -25,6 +30,8 @@ public:
     engine = en;
   }
 
+  // forward and backward methods
+  // which involves changing the direction of the motor
   void forward() {
     digitalWrite(input1, LOW);
     digitalWrite(input2, HIGH);
@@ -37,14 +44,20 @@ public:
     analogWrite(engine, 255);
   }
 
+  // stop method: set the speed to 0
   void stop() { analogWrite(engine, 0); }
 
+  // setup the pins for the motor
   void setup() {
     pinMode(input1, OUTPUT);
     pinMode(input2, OUTPUT);
     pinMode(engine, OUTPUT);
   }
 };
+
+// doing it this way is easy to debug
+// because if a motor is in the wrong direction,
+// we can simply swap the input pins.
 
 // (in1, in2, en)
 Motor left1(5, 7, 6);

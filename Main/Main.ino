@@ -1,8 +1,11 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>
 
+// initialize the serial port for communication with the main
 const int rx = 2; // connected to TXD
 const int tx = 3; // connected to RXD
+
+// initialize input pins
 const int forwardPin = 12;
 const int backwardPin = 11;
 const int leftPin = 13;
@@ -13,10 +16,11 @@ const int rightPin = 10;
 
 // set rec to peripherial mode (no command)
 // configure main:
-// AT+IMME1
+// AT+IMME0
 // AT+ROLE1
 // AT+CON6C79B8B73EF9
 
+// blutooth serial port
 SoftwareSerial bt(rx, tx);
 
 void setup() {
@@ -39,6 +43,11 @@ char command = '4';
 char last = '4';
 
 void loop() {
+  // if the pin in front is triggered
+  // it means the person has tilted the device backwards.
+  // so send the corresponding command
+  // same logic applies for left and right
+
   if (digitalRead(forwardPin) == HIGH) {
     command = '1';
   } else if (digitalRead(backwardPin) == HIGH) {
@@ -51,6 +60,13 @@ void loop() {
     command = '4';
   }
 
+  // This is to check if the current state has been updated.
+  // This is important because we don't want to send the same command
+  // and overload the receiver.
+  // Each time a command is sent, the car processes it,
+  // and updates the state of the h-bridges.
+  // This process takes up a few miliseconds, so sending many commands
+  // is expensive and will create delay between the input and output.
   if (command != last) {
     bt.write(command);
     last = command;
