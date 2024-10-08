@@ -17,4 +17,4 @@ The car has two H-bridge so that it can turn in place and go forward/backward. F
 
 There are better ways for communication between two Arduino board, but we used two HM10 Bluetooth module to communicate with each other because that was the available hardware our teacher had and we didn't want to spend money buying parts.
 
-This might not seem a lot, but there is very little documentaion about connecting two HM10 bluetooth module together since nobody does that and there are better ways to connect two Arduinos. So, there was a lot of painful testing until we got the this final polished and consistent solution.
+This might not seem a lot, but there is very little documentation about connecting two HM10 Bluetooth module together since nobody does that and there are better ways to connect two Arduino. So, there was a lot of painful testing until we got the this final polished and consistent solution.
